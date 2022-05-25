@@ -48,6 +48,24 @@ export const checklistItemController = {
           console.log(error)
         })
     },
+    updateItemStatus({commit, dispatch}, payload){
+      axios({
+        headers: {
+          Authorization :`Bearer ${localStorage.getItem('token')}`
+        },
+        method: 'PUT',
+        url: `${collectionUrl.checklistItemController}/${payload.idGroup}/item/${payload.idItem}`,
+      })
+        .then((response)=>{
+          console.log('response done item = ')
+          console.log(response)
+          return dispatch('setItemChecklist',payload.id)
+        })
+        .catch((error)=>{
+          console.log('error done item = ')
+          console.log(error)
+        })
+    },
     deleteItemCheckList({commit, dispatch}, payload){
       axios({
         headers: {

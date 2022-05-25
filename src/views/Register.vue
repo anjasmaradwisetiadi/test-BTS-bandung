@@ -1,9 +1,24 @@
 <template>
-  <div class="home mt-4">
+  <div class="register mt-4">
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <b-card title="Login">
+          <b-card title="Register">
+            <div class="text-left">
+              <b-form-group
+                id="input-group-1"
+                label="Email :"
+                label-for="input-1"
+              >
+                <b-form-input
+                  id="input-1"
+                  v-model="form.email"
+                  type="text"
+                  placeholder="Enter email"
+                  required
+                ></b-form-input>
+              </b-form-group>
+            </div>
             <div class="text-left">
               <b-form-group
                 id="input-group-1"
@@ -45,15 +60,15 @@
 </template>
 
 <script>
-// @ is an alias to /src
-import collectionUrl from "../service/collectionUrl/CollectionUrl";
 import axios from "axios";
+import collectionUrl from "../service/collectionUrl/CollectionUrl";
 
 export default {
-  name: 'Home',
+  name: "Register",
   data(){
     return{
       form:{
+        email:'',
         username:'',
         password:''
       }
@@ -61,31 +76,31 @@ export default {
   },
   methods:{
     handleLogin(){
-      const payload = {
-        username: this.form.username,
-        password: this.form.password
-      }
+      this.$router.push('/home')
+    },
+    handleRegister(){
       axios({
         method: 'POST',
-        url: collectionUrl.login,
+        url: collectionUrl.register,
         data: {
-          'username': payload.username,
-          'password': payload.password,
-        },
+          'username': this.form.username,
+          'password': this.form.password,
+          'email': this.form.email
+         },
       })
         .then((response)=>{
-          localStorage.setItem('token', response.data.data.token)
-          this.$router.push('/dashboard')
+          alert('berhasil register')
+          this.$router.push('/home')
         })
         .catch((error)=>{
           console.log('error login = ')
           console.log(error)
         })
-/*      this.$store.dispatch('login', payload)*/
     },
-    handleRegister(){
-      this.$router.push('/register')
-    }
   }
-};
+}
 </script>
+
+<style scoped>
+
+</style>

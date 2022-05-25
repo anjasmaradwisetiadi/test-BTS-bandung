@@ -16,11 +16,29 @@
         <b-card class="text-center">
           <div class="row">
             <div class="col-4">
-              <input
-                data-cy="todo-item-checkbox"
-                class="form-check checkbox-sizing"
-                type="checkbox"
-              >
+              <div class="d-flex">
+                <div class="mr-2">
+                  <input
+                    data-cy="todo-item-checkbox"
+                    class="form-check checkbox-sizing"
+                    type="checkbox"
+                    :id="`${items.id}`"
+                    @change="taskActivated(items)"
+                  >
+                </div>
+                <div class="mr-2">
+                  <b-button v-b-toggle.collapse-1-inner size="sm">Hasil </b-button>
+                </div>
+              </div>
+              <div>
+                <b-collapse id="collapse-1-inner" class="mt-2">
+                  <b-card>
+                    <b-form-input v-model="formUpdateItemStatus.checklistId" placeholder="checlist id "></b-form-input>
+                    <b-form-input v-model="formUpdateItemStatus.id" placeholder="id "></b-form-input>
+                    <b-button class="mt-2 text-primary" @click="updateItem">Update</b-button>
+                  </b-card>
+                </b-collapse>
+              </div>
             </div>
             <div class="col-4">
               {{ items.name }}
@@ -42,7 +60,12 @@ export default {
   name: "DetailList",
   data(){
     return{
-      collectListData:[]
+      collectListData:[],
+      doneList:0,
+      formUpdateItemStatus:{
+        checklistId:null,
+        id:null
+      }
     }
   },
   computed:{
@@ -79,6 +102,14 @@ export default {
         'idItem': id
       }
       this.$store.dispatch('deleteItemCheckList',payload)
+    },
+
+    updateItem(){
+      const payload = {
+          'idGroup': this.formUpdateItemStatus.checklistId,
+          'idItem': this.formUpdateItemStatus.id
+      }
+      this.$store.dispatch('updateItemStatus',payload)
     }
   }
 }
