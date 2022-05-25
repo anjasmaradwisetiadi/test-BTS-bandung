@@ -24,7 +24,6 @@
                 id="input-group-1"
                 label="Password :"
                 label-for="input-1"
-                description="password"
               >
                 <b-form-input
                   id="input-1"
@@ -35,8 +34,8 @@
                 ></b-form-input>
               </b-form-group>
             </div>
-            <b-button variant="primary" @click="handleLogin">Log in</b-button>
-            <b-button variant="primary" @click="handleRegister">Register</b-button>
+            <b-button variant="primary" class="mr-2"  @click="handleLogin">Log in</b-button>
+            <b-button variant="success" @click="handleRegister">Register</b-button>
           </b-card>
         </div>
       </div>

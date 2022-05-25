@@ -50,8 +50,8 @@
                 ></b-form-input>
               </b-form-group>
             </div>
-            <b-button variant="primary" @click="handleLogin">Log in</b-button>
-            <b-button variant="primary" @click="handleRegister">Register</b-button>
+            <b-button variant="primary" class="mr-2"  @click="handleLogin">Log in</b-button>
+            <b-button variant="success" @click="handleRegister">Register</b-button>
           </b-card>
         </div>
       </div>
@@ -89,8 +89,10 @@ export default {
          },
       })
         .then((response)=>{
-          alert('berhasil register')
-          this.$router.push('/home')
+          let text = "anda telah berhasil register \nklik OK untuk ke page Home atau \nklik Cancel untuk tetap dipage register.";
+          if (confirm(text) === true) {
+            this.$router.push('/home')
+          }
         })
         .catch((error)=>{
           console.log('error login = ')
