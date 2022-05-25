@@ -1,6 +1,9 @@
 import enviroment from "../enviroments/enviroment";
 const collectionUrl = {
-  group: `${enviroment}/ `
+  login: `${enviroment.url}login`,
+  register: `${enviroment.url}register`,
+  checklistController: `${enviroment.url}checklist`,
+  checklistItemController: `${enviroment.url}checklist`
 }
 
 export default collectionUrl
