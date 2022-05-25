@@ -4,16 +4,16 @@
       <div class="d-flex justify-content-between">
         <div>
           <span>
-            Cheklist
+            Cheklist Group
           </span>
         </div>
         <div>
-          <b-button variant="primary" @click="addList">Add List</b-button>
+          <b-button variant="primary" @click="addList">Add Group</b-button>
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <h3 class="mb-3">List Item</h3>
+          <h3 class="mb-3">List Group</h3>
           <div class="row">
             <div class="col-3" v-for="item in getterListChecklist">
               <b-card class="text-center">
